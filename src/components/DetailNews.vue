@@ -12,32 +12,18 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      oneNews: [],
-    };
-  },
   computed: {
-    slug() {
-      return this.$route.params.slug;
+    oneNews() {
+      return this.$store.state.oneNews;
     },
   },
   methods: {
-    getNews() {
-      this.oneNews = this.$store.state.listNews.find(
-        (item) => this.toSlug(item.title) == this.slug
-      );
-    },
-    toSlug(value) {
-      return value
-        .toLowerCase() // LowerCase
-        .replace(/\s+/g, "-") // space to -
-        .replace(/&/g, `-and-`) // & to and
-        .replace(/--/g, `-`);
+    getNews(slug) {
+      this.$store.dispatch("getNews", slug);
     },
   },
-  mounted() {
-    this.getNews();
+  created() {
+    this.getNews(this.$route.params.slug);
   },
 };
 </script>

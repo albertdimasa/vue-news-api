@@ -26,11 +26,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      slug: "",
-    };
-  },
   computed: {
     listNews() {
       return this.$store.state.listNews;
@@ -41,19 +36,20 @@ export default {
     fetchNews() {
       this.$store.dispatch("fetchListNews");
     },
+
     getTitle(value) {
-      this.slug = value
+      value = value
         .toLowerCase() // LowerCase
         .replace(/\s+/g, "-") // space to -
         .replace(/&/g, `-and-`) // & to and
         .replace(/--/g, `-`);
-      this.detailNews();
+      this.detailNews(value);
     },
 
-    detailNews() {
+    detailNews(slug) {
       this.$router.push({
         name: "detailBerita",
-        params: { slug: this.slug },
+        params: { slug: slug },
       });
     },
   },

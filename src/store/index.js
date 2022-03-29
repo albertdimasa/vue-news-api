@@ -5,17 +5,29 @@ import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
 const dataPers = createPersistedState({
-  state: ["listNews"],
+  state: ["listNews", "OneNews"],
 });
 export default new Vuex.Store({
   plugins: [dataPers],
   state: {
     listNews: [],
+    OneNews: [],
   },
   getters: {},
   mutations: {
     setNews(state, payload) {
       state.listNews = payload.articles;
+    },
+    setOneNews(state, payload) {
+      console.log(payload);
+      state.oneNews = state.listNews.find(
+        (item) =>
+          item.title
+            .toLowerCase() // LowerCase
+            .replace(/\s+/g, "-") // space to -
+            .replace(/&/g, `-and-`) // & to and
+            .replace(/--/g, `-`) == payload
+      );
     },
   },
   actions: {
@@ -27,6 +39,9 @@ export default new Vuex.Store({
         .then((response) => {
           store.commit("setNews", response.data);
         });
+    },
+    getNews(store, slug) {
+      store.commit("setOneNews", slug);
     },
   },
   modules: {},
