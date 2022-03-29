@@ -1,28 +1,41 @@
 <template>
   <div id="app">
+    <div id="nav">
+      <router-link :to="{ path: '/' }" v-if="isHome"
+        ><span>Semua Berita</span></router-link
+      >
+    </div>
+    <p></p>
     <router-view />
   </div>
 </template>
-
+<script>
+export default {
+  computed: {
+    isHome() {
+      return this.$route.name === "detailBerita";
+    },
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  color: #2c3e50;
+}
+#nav {
   text-align: center;
-  color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+span {
+  padding: 20px;
+  background-color: rgb(0, 165, 187);
+  color: white;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+p {
+  margin: 25px 0;
 }
 </style>

@@ -1,10 +1,10 @@
+import moment from "moment";
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import TimeTag from "vue-time-tag";
-Vue.config.productionTip = false;
-Vue.use(TimeTag);
+
+Vue.prototype.moment = moment;
 new Vue({
   router,
   store,

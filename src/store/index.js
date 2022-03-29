@@ -1,10 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-
+import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
+const dataPers = createPersistedState({
+  state: ["listNews"],
+});
 export default new Vuex.Store({
+  plugins: [dataPers],
   state: {
     listNews: [],
   },

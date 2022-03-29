@@ -1,20 +1,22 @@
 <template>
-  <div>
-    <h1>List Berita Indonesia</h1>
+  <div id="listNews">
+    <h1>Portal Berita Indonesia</h1>
     <ul>
       <li v-for="berita in listNews" :key="berita.id">
-        <div class="card" style="width: 18rem">
+        <div class="card">
           <img :src="berita.urlToImage" class="card-img-top" />
           <div class="card-body">
             <p class="card-author">
               By <b>{{ berita.author }}</b> -
-              {{ berita.publishedAt }}
+              {{ moment(berita.publishedAt).utc().format("LLLL") }}
             </p>
             <h4 class="card-title">{{ berita.title }}</h4>
             <p class="card-text">
               {{ berita.description }}
             </p>
-            <a href="#" class="button">Lihat selengkapnya</a>
+            <button class="button" @click="getTitle(berita.title)">
+              Lihat selengkapnya
+            </button>
           </div>
         </div>
       </li>
@@ -24,14 +26,35 @@
 
 <script>
 export default {
+  data() {
+    return {
+      slug: "",
+    };
+  },
   computed: {
     listNews() {
       return this.$store.state.listNews;
     },
   },
+
   methods: {
     fetchNews() {
       this.$store.dispatch("fetchListNews");
+    },
+    getTitle(value) {
+      this.slug = value
+        .toLowerCase() // LowerCase
+        .replace(/\s+/g, "-") // space to -
+        .replace(/&/g, `-and-`) // & to and
+        .replace(/--/g, `-`);
+      this.detailNews();
+    },
+
+    detailNews() {
+      this.$router.push({
+        name: "detailBerita",
+        params: { slug: this.slug },
+      });
     },
   },
   mounted() {
@@ -40,6 +63,9 @@ export default {
 };
 </script>
 <style scoped>
+#listNews {
+  text-align: center;
+}
 ul {
   justify-content: center;
 }
@@ -55,6 +81,7 @@ img {
 }
 .card {
   flex-wrap: wrap;
+  width: 18rem;
   margin: 20px 20px;
   box-shadow: 8px 6px 8px -9px rgba(0, 0, 0, 0.8);
   border-radius: 10px;
@@ -88,7 +115,7 @@ img {
   background: rgb(20, 138, 216);
   color: white;
   padding: 8px 10px;
-  text-decoration: none;
+  border: none;
   border-radius: 7px;
   cursor: pointer;
   font-size: 13px;

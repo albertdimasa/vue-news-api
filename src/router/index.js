@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import ListNewsView from "../views/ListNewsView.vue";
+import DetailNewsView from "../views/DetailNewsView.vue";
 
 Vue.use(VueRouter);
 
@@ -10,11 +11,11 @@ const routes = [
     name: "berita",
     component: ListNewsView,
   },
-  // {
-  //   path: "/:slug",
-  //   name: "satu-berita",
-  //   component: "",
-  // },
+  {
+    path: "/:slug",
+    name: "detailBerita",
+    component: DetailNewsView,
+  },
 ];
 
 const router = new VueRouter({
