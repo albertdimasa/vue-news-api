@@ -16,6 +16,7 @@ export default new Vuex.Store({
   getters: {},
   mutations: {
     setNews(state, payload) {
+      console.log(payload);
       state.listNews = payload.articles;
     },
     setOneNews(state, payload) {
