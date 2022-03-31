@@ -4,7 +4,7 @@
     <h1 class="title">{{ oneNews.title }}</h1>
     <h3 class="info">
       {{ oneNews.author }} -
-      {{ moment(oneNews.publishedAt).lang("id").format("LLLL") }}
+      {{ moment(oneNews.publishedAt).locale("id").format("LLLL") }}
     </h3>
     <p class="desc">{{ oneNews.content }}</p>
     <a :href="oneNews.url" target="_blank">Baca selengkapnya</a>

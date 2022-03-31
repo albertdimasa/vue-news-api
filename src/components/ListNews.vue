@@ -8,7 +8,7 @@
           <div class="card-body">
             <p class="card-author">
               By <b>{{ berita.author }}</b> -
-              {{ moment(berita.publishedAt).lang("id").format("LLLL") }}
+              {{ moment(berita.publishedAt).locale("id").format("LLLL") }}
             </p>
             <h4 class="card-title">{{ berita.title }}</h4>
             <p class="card-text">
