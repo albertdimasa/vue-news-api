@@ -14,8 +14,15 @@
             <p class="card-text">
               {{ berita.description }}
             </p>
-            <button class="button" @click="getTitle(berita.title)">
-              Lihat selengkapnya
+            <button>
+              <router-link
+                :to="{
+                  name: 'Detail Berita',
+                  params: { slug: toSlug(berita.title) },
+                }"
+              >
+                Lihat selengkapnya
+              </router-link>
             </button>
           </div>
         </div>
@@ -37,20 +44,13 @@ export default {
       this.$store.dispatch("fetchListNews");
     },
 
-    getTitle(value) {
+    toSlug(value) {
       value = value
         .toLowerCase() // LowerCase
         .replace(/\s+/g, "-") // space to -
         .replace(/&/g, `-and-`) // & to and
         .replace(/--/g, `-`);
-      this.detailNews(value);
-    },
-
-    detailNews(slug) {
-      this.$router.push({
-        name: "detailBerita",
-        params: { slug: slug },
-      });
+      return value;
     },
   },
   mounted() {

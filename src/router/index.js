@@ -2,19 +2,30 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import ListNewsView from "../views/ListNewsView.vue";
 import DetailNewsView from "../views/DetailNewsView.vue";
+import DefaultView from "../views/DefaultView.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "berita",
-    component: ListNewsView,
+    redirect: "/berita",
   },
   {
-    path: "/:slug",
-    name: "detailBerita",
-    component: DetailNewsView,
+    path: "/berita",
+    component: DefaultView,
+    children: [
+      {
+        path: "",
+        name: "Berita",
+        component: ListNewsView,
+      },
+      {
+        path: "/:slug",
+        name: "Detail Berita",
+        component: DetailNewsView,
+      },
+    ],
   },
 ];
 
