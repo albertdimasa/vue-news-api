@@ -16,11 +16,9 @@ export default new Vuex.Store({
   getters: {},
   mutations: {
     setNews(state, payload) {
-      console.log(payload);
       state.listNews = payload.articles;
     },
     setOneNews(state, payload) {
-      console.log(payload);
       state.oneNews = state.listNews.find(
         (item) =>
           item.title
@@ -35,7 +33,7 @@ export default new Vuex.Store({
     fetchListNews(store) {
       axios
         .get(
-          "https://newsapi.org/v2/top-headlines?country=id&apiKey=2418fb5a837a4ad69a6de201af5e0e35"
+          "https://newsapi.org/v2/everything?q=default&apiKey=2418fb5a837a4ad69a6de201af5e0e35"
         )
         .then((response) => {
           store.commit("setNews", response.data);
