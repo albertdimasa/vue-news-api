@@ -2,7 +2,7 @@
   <nav>
     <v-toolbar flat class="grey lighten-4 px-10">
       <v-toolbar-title class="text-uppercase cyan--text">
-        <a href="/">
+        <a @click="$router.back()">
           <span class="font-weight-bold">Portal</span>
           <span>Berita</span>
         </a>
