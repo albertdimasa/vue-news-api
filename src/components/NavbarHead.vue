@@ -19,6 +19,7 @@
         filled
         dense
         prepend-inner-icon="mdi-magnify"
+        v-model="search"
       ></v-text-field>
 
       <v-btn icon href="/kategori">
@@ -29,12 +30,23 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      search: "",
+    };
+  },
   methods: {
     categoryNull() {
       this.$store.dispatch("getCategory", "");
+
       this.$router.push({
         name: "Home",
       });
+    },
+  },
+  watch: {
+    search(value) {
+      this.$store.dispatch("getSearch", value);
     },
   },
 };

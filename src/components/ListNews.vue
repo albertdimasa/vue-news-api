@@ -42,8 +42,16 @@
 <script>
 export default {
   computed: {
+    search() {
+      return this.$store.state.search;
+    },
     listNews() {
-      return this.$store.state.listNews;
+      return this.$store.state.listNews.filter((item) => {
+        return (
+          item.title.toLowerCase().match(this.search.toLowerCase()) ||
+          item.description.toLowerCase().match(this.search.toLowerCase())
+        );
+      });
     },
   },
 

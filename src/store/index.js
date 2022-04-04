@@ -13,6 +13,7 @@ export default new Vuex.Store({
     listNews: [],
     OneNews: [],
     category: "",
+    search: "",
     listCategories: [
       {
         nama: "business",
@@ -51,7 +52,9 @@ export default new Vuex.Store({
     },
     setCategory(state, payload) {
       state.category = payload;
-      console.log(state.category);
+    },
+    setSearch(state, payload) {
+      state.search = payload;
     },
 
     setOneNews(state, payload) {
@@ -83,6 +86,9 @@ export default new Vuex.Store({
     },
     getCategory(store, category) {
       store.commit("setCategory", category);
+    },
+    getSearch(store, payload) {
+      store.commit("setSearch", payload);
     },
   },
   modules: {},
