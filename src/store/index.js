@@ -12,12 +12,48 @@ export default new Vuex.Store({
   state: {
     listNews: [],
     OneNews: [],
+    category: "",
+    listCategories: [
+      {
+        nama: "business",
+        gambar: "https://source.unsplash.com/1000x300/?business",
+      },
+      {
+        nama: "entertainment",
+        gambar: "https://source.unsplash.com/1000x300/?entertainment",
+      },
+      {
+        nama: "general",
+        gambar: "https://source.unsplash.com/1000x300/?general",
+      },
+      {
+        nama: "health",
+        gambar: "https://source.unsplash.com/1000x300/?health",
+      },
+      {
+        nama: "science",
+        gambar: "https://source.unsplash.com/1000x300/?science",
+      },
+      {
+        nama: "sports",
+        gambar: "https://source.unsplash.com/1000x300/?sports",
+      },
+      {
+        nama: "technology",
+        gambar: "https://source.unsplash.com/1000x300/?technology",
+      },
+    ],
   },
   getters: {},
   mutations: {
     setNews(state, payload) {
       state.listNews = payload.articles;
     },
+    setCategory(state, payload) {
+      state.category = payload;
+      console.log(state.category);
+    },
+
     setOneNews(state, payload) {
       state.oneNews = state.listNews.find(
         (item) =>
@@ -30,17 +66,23 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchListNews(store) {
+    fetchListNews(store, payload) {
       axios
         .get(
-          "https://newsapi.org/v2/everything?q=default&apiKey=2418fb5a837a4ad69a6de201af5e0e35"
+          `https://newsapi.org/v2/top-headlines?country=id&category=` +
+            payload +
+            `&apiKey=2418fb5a837a4ad69a6de201af5e0e35`
         )
         .then((response) => {
           store.commit("setNews", response.data);
         });
     },
+
     getNews(store, slug) {
       store.commit("setOneNews", slug);
+    },
+    getCategory(store, category) {
+      store.commit("setCategory", category);
     },
   },
   modules: {},

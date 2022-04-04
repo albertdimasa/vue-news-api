@@ -16,9 +16,11 @@
 
           <v-card-subtitle>
             By <b>{{ berita.author }}</b> -
-            {{ moment(berita.publishedAt).locale("id").format("LLLL") }} WIB
+            <p>
+              {{ moment(berita.publishedAt).locale("id").format("LLLL") }}
+            </p>
           </v-card-subtitle>
-          <v-card-title class="text-center">{{ berita.title }}</v-card-title>
+          <h4 class="text-center px-3">{{ berita.title }}</h4>
           <v-card-text>
             {{ berita.description }}
           </v-card-text>
@@ -46,8 +48,8 @@ export default {
   },
 
   methods: {
-    fetchNews() {
-      this.$store.dispatch("fetchListNews");
+    fetchNews(value) {
+      this.$store.dispatch("fetchListNews", value);
     },
 
     toSlug(value) {
@@ -60,7 +62,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchNews();
+    this.fetchNews(this.$store.state.category);
   },
 };
 </script>
