@@ -47,10 +47,7 @@ export default {
     },
     listNews() {
       return this.$store.state.listNews.filter((item) => {
-        return (
-          item.title.toLowerCase().match(this.search.toLowerCase()) ||
-          item.description.toLowerCase().match(this.search.toLowerCase())
-        );
+        return item.title.toLowerCase().match(this.search.toLowerCase());
       });
     },
   },
