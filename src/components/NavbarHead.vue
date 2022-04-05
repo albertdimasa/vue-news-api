@@ -2,10 +2,6 @@
   <nav>
     <v-toolbar flat class="grey lighten-4 px-10">
       <v-toolbar-title class="text-uppercase cyan--text">
-        <!-- <router-link :to="{ name: `Home` }">
-          <span class="font-weight-bold">Portal</span>
-          <span>Berita</span>
-        </router-link> -->
         <v-btn @click="categoryNull" class="blue--text">
           <span class="font-weight-bold">Portal</span>
           <span>Berita</span>
@@ -39,9 +35,11 @@ export default {
     categoryNull() {
       this.$store.dispatch("getCategory", "");
 
-      this.$router.push({
-        name: "Home",
-      });
+      this.$router
+        .push({
+          name: "Home",
+        })
+        .catch((err) => err);
     },
   },
   watch: {
