@@ -1,14 +1,17 @@
 <template>
-  <div id="detailNews">
-    <img :src="oneNews.urlToImage" />
-    <h1 class="title">{{ oneNews.title }}</h1>
-    <h3 class="info">
+  <v-container>
+    <v-img :src="oneNews.urlToImage" max-width="60%" class="rounded-lg mb-3" />
+    <h2>{{ oneNews.title }}</h2>
+    <h4 class="blue-grey--text">
       {{ oneNews.author }} -
       {{ moment(oneNews.publishedAt).locale("id").format("LLLL") }}
-    </h3>
-    <p class="desc">{{ oneNews.content }}</p>
-    <a :href="oneNews.url" target="_blank">Baca selengkapnya</a>
-  </div>
+    </h4>
+    <p>{{ oneNews.content }}</p>
+    <v-btn class="secondary mr-5" @click="$router.back()">Kembali</v-btn>
+    <v-btn :href="oneNews.url" target="_blank" class="blue darken-4 white--text"
+      >Baca selengkapnya</v-btn
+    >
+  </v-container>
 </template>
 <script>
 export default {
@@ -27,43 +30,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-#detailNews {
-  margin: 0 250px;
-}
-img {
-  object-fit: cover;
-  height: 30rem;
-  width: 50rem;
-  border-radius: 5px;
-  display: block;
-  margin: auto;
-}
-
-.title {
-  font-size: 30px;
-}
-.info {
-  font-size: 15px;
-  color: rgb(114, 113, 113);
-}
-
-.desc {
-  font-size: 20px;
-}
-a {
-  font-weight: bold;
-  text-decoration: none;
-  padding: 0px;
-  margin: 0px;
-  transition: 0.3s;
-}
-a:hover {
-  color: #b34040;
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-  background-color: #ffffff;
-  margin: 4px;
-}
-</style>
+<style scoped></style>
