@@ -12,17 +12,17 @@
         lg3
       >
         <v-card elevation="2" outlined shaped>
-          <v-img :src="berita.urlToImage" max-height="150" />
+          <v-img :src="berita.media" max-height="150" />
 
           <v-card-subtitle>
-            By <b>{{ berita.author }}</b> -
+            By <b>{{ berita.author }}</b>
             <p>
-              {{ moment(berita.publishedAt).locale("id").format("LLLL") }}
+              {{ moment(berita.published_date).locale("id").format("LLLL") }}
             </p>
           </v-card-subtitle>
           <h4 class="text-center px-3">{{ berita.title }}</h4>
           <v-card-text>
-            {{ berita.description }}
+            {{ berita.excerpt }}
           </v-card-text>
           <v-btn
             class="primary mb-5"

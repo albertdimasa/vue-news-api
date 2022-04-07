@@ -5,7 +5,7 @@ import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
 const dataPers = createPersistedState({
-  state: ["listNews", "OneNews"],
+  state: ["listNews", "OneNews", "category", "listCategories"],
 });
 export default new Vuex.Store({
   plugins: [dataPers],
@@ -16,32 +16,68 @@ export default new Vuex.Store({
     search: "",
     listCategories: [
       {
+        nama: "news",
+        gambar: "https://source.unsplash.com/1000x300/?news",
+      },
+      {
+        nama: "sport",
+        gambar: "https://source.unsplash.com/1000x300/?sports",
+      },
+      {
+        nama: "tech",
+        gambar: "https://source.unsplash.com/1000x300/?tech",
+      },
+      {
+        nama: "world",
+        gambar: "https://source.unsplash.com/1000x300/?world",
+      },
+      {
+        nama: "finance",
+        gambar: "https://source.unsplash.com/1000x300/?finance",
+      },
+      {
+        nama: "politics",
+        gambar: "https://source.unsplash.com/1000x300/?politics",
+      },
+      {
         nama: "business",
         gambar: "https://source.unsplash.com/1000x300/?business",
+      },
+      {
+        nama: "economics",
+        gambar: "https://source.unsplash.com/1000x300/?economics",
       },
       {
         nama: "entertainment",
         gambar: "https://source.unsplash.com/1000x300/?entertainment",
       },
       {
-        nama: "general",
-        gambar: "https://source.unsplash.com/1000x300/?general",
+        nama: "beauty",
+        gambar: "https://source.unsplash.com/1000x300/?beauty",
       },
       {
-        nama: "health",
-        gambar: "https://source.unsplash.com/1000x300/?health",
+        nama: "travel",
+        gambar: "https://source.unsplash.com/1000x300/?travel",
+      },
+      {
+        nama: "music",
+        gambar: "https://source.unsplash.com/1000x300/?music",
+      },
+      {
+        nama: "food",
+        gambar: "https://source.unsplash.com/1000x300/?food",
       },
       {
         nama: "science",
         gambar: "https://source.unsplash.com/1000x300/?science",
       },
       {
-        nama: "sports",
-        gambar: "https://source.unsplash.com/1000x300/?sports",
+        nama: "gaming",
+        gambar: "https://source.unsplash.com/1000x300/?gaming",
       },
       {
-        nama: "technology",
-        gambar: "https://source.unsplash.com/1000x300/?technology",
+        nama: "energy",
+        gambar: "https://source.unsplash.com/1000x300/?energy",
       },
     ],
   },
@@ -72,9 +108,13 @@ export default new Vuex.Store({
     fetchListNews(store, payload) {
       axios
         .get(
-          `https://newsapi.org/v2/top-headlines?country=id&category=` +
-            payload +
-            `&apiKey=2418fb5a837a4ad69a6de201af5e0e35`
+          `https://api.newscatcherapi.com/v2/latest_headlines?countries=ID&topic=` +
+            payload,
+          {
+            headers: {
+              "x-api-key": "UnCXxHCweXB2_XLc3jIGIMAZfGaadR6ZoCoQf7lcroI",
+            },
+          }
         )
         .then((response) => {
           store.commit("setNews", response.data);
