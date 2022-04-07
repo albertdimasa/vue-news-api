@@ -28,12 +28,13 @@
 export default {
   data() {
     return {
-      search: "",
+      search: (this.$store.state.search = ""),
     };
   },
   methods: {
     categoryNull() {
       this.$store.dispatch("getCategory", "");
+      this.search = "";
 
       this.$router
         .push({
