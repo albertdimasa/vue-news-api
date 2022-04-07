@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /dist
-
+testing.rest
 
 # local env files
 .env.local
