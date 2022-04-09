@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DetailNews />
+    <DetailNews :news="oneNews" />
   </div>
 </template>
 
@@ -12,6 +12,19 @@ export default {
   name: "DetailNewsView",
   components: {
     DetailNews,
+  },
+  computed: {
+    oneNews() {
+      return this.$store.state.oneNews;
+    },
+  },
+  methods: {
+    getNews(slug) {
+      this.$store.dispatch("getNews", slug);
+    },
+  },
+  created() {
+    this.getNews(this.$route.params.slug);
   },
 };
 </script>
