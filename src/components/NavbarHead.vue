@@ -2,10 +2,11 @@
   <nav>
     <v-toolbar flat class="grey lighten-4 px-10">
       <v-toolbar-title class="text-uppercase cyan--text">
-        <v-btn @click="categoryNull" class="blue--text">
-          <span class="font-weight-bold">Portal</span>
-          <span>Berita</span>
-        </v-btn>
+        <v-img
+          src="../assets/logo.jpg"
+          style="width: 50px; cursor: pointer"
+          @click="categoryNull"
+        ></v-img>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
