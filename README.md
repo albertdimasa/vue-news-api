@@ -1,4 +1,9 @@
-# vue-coba_api
+# Portal Berita Indonesia
+
+## Overview
+Sebuah website sederhana yang menampilkan berita dari negara indonesia. 
+Api yang digunakan adalah dari [News Catcher API](https://newscatcherapi.com/).
+
 
 ## Project setup
 ```
