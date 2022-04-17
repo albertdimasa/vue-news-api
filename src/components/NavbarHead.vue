@@ -51,10 +51,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-a {
-  cursor: pointer;
-  text-decoration: none;
-  color: unset !important ;
-}
-</style>
